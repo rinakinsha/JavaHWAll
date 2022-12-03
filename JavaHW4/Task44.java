@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Task44 {
     public static void main(String[] args) {
         Scanner f = new Scanner(System.in);
-        System.out.printf("Введите строку типа twxt~num: ");
+        System.out.printf("Введите строку типа text~num: ");
         String current = "";
         Map<String, String> map = new HashMap<>();
         String[] array;
