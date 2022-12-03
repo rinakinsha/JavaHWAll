@@ -1,8 +1,3 @@
-package JavaHW4;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Scanner;
-
 /*Реализовать консольное приложение, которое:
  * Принимает от пользователя строку вида text~num;
  * Нужно рассплитить строку по ~, сохранить text в связный список на позицию num;
@@ -10,59 +5,38 @@ import java.util.Scanner;
  * Если ввод не содержит символа ~, то завершает программу с ошибкой;
  * Если введено -1, то выходим. */
 
+package JavaHW4;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class Task44 {
-    public static <T> void main(String[] args) {
-        Scanner iScanner = new Scanner(System.in);
-        
+    public static void main(String[] args) {
+        Scanner f = new Scanner(System.in);
         System.out.printf("Введите строку типа twxt~num: ");
-        LinkedList <String> second = new LinkedList<>();
-        
-
-        while (true) {
-            String word = iScanner.nextLine();
-            String [] subStr;
-            String delimeter = "~";
-            subStr = word.split(delimeter);
-            int pos = Integer.parseInt(subStr[1]);
-            System.out.println(pos);
-            second.add(pos, subStr[0]);
-            System.out.println(second);
+        String current = "";
+        Map<String, String> map = new HashMap<>();
+        String[] array;
+        while (!current.equals("-1")) {
+            current = f.nextLine();
+            if (current.contains("~")) {
+                if (current.contains("print")) {
+                    array = current.replace("~", " ").split(" ");
+                    String result = map.get(array[1]);
+                    System.out.println(result);
+                } else {
+                    array = current.replace("~", " ").split(" ");
+                    map.put(array[1], array[0]);
+                    System.out.println(map);
+                }
+            } else if (!current.equals("-1")) {
+                System.out.println("Неверный формат ввода");
+                break;
+            } else {
+                System.out.println("Конец работы");
+            }
         }
-
-        
-
-        
-
-
-        
-
-        /*System.out.println(Arrays.toString(subStr));*/
-        
-        /*Scanner scanner = new Scanner(System.in);
-        List<String> list = new ArrayList<>();
-        while (true) {
-            String word = scanner.nextLine();
-            if (Objects.equals(word, "print")) {
-                for (int i = list.size() - 1; i > -1; i--) {
-                    System.out.print(list.get(i) + " ");
-                }
-                System.out.println();
-                continue;
-            }
-            if (Objects.equals(word, "revert")) {
-                if (list.size() != 0) {
-                    list.remove(list.size() - 1);
-                }
-                continue;
-            }
-            list.add(word);
-            if (Objects.equals(word, "end")) return;
-        } */
+        f.close();
     }
-
-    private static int parseInt(String string) {
-        return 0;
-    }
-
-    
 }
